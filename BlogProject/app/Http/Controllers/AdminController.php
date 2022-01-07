@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin; 
+use Session;
 
 class AdminController extends Controller
 {
@@ -22,9 +23,11 @@ class AdminController extends Controller
         $userCheck=Admin::where(['username'=>$request->username,'password'=>$request->password])->count();
     	if($userCheck>0){
             $adminData=Admin::where(['username'=>$request->username,'password'=>$request->password])->first();
+            session(['adminData'=>$adminData]);
     		return redirect('admin/dashboard');
     	}else{
-    		return redirect('admin/login')->with('Invalid username or password!');
+            Session::flash('error','Invalid username or password');
+    		return redirect('admin/login');
     	}
     }
 
