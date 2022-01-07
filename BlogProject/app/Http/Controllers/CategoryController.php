@@ -17,7 +17,11 @@ class CategoryController extends Controller
     public function index()
     {
         $data=Category::all(); //catch all datas
-        return view('backend.category.index',['data'=>$data]);
+        return view('backend.category.index',[
+            'data'=>$data,
+            'title'=>'All Categories',
+            'meta_desc'=> 'This is meta description for all categories'
+        ]);
     }
 
     /**
