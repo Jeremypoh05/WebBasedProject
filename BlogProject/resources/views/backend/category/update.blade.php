@@ -110,7 +110,7 @@
 <!-- DataTables Example -->
 <div class="card mb-3">
   <div class="card-header">
-    <i class="fas fa-table"></i> Add Category
+    <i class="fas fa-table"></i> Update Category
     <a href="{{url('admin/category')}}" class="float-right btn btn-sm btn-dark">All Data</a>
   </div>
   <div class="card-body">
@@ -126,20 +126,25 @@
       <p class="text-success">{{session('success')}}</p>
       @endif
 
-      <form method="post" action="{{url('admin/category')}}" enctype="multipart/form-data">
+      <form method="post" action="{{url('admin/category/'.$data->id)}}" enctype="multipart/form-data">        
         @csrf
+        @method('put') <!--use php artisan route:list to check the method)-->
         <table class="table table-bordered">
             <tr>
                 <th>Title</th>
-                <td><input type="text" name="title" class="form-control" /></td>
+                <td><input type="text" value="{{$data->title}}" name="title" class="form-control" /></td>
             </tr>
             <tr>
                 <th>Detail</th>
-                <td><input type="text" name="detail" class="form-control" /></td>
+                <td><input type="text" value="{{$data->detail}}" name="detail" class="form-control" /></td>
             </tr>
             <tr>
                 <th>Image</th>
-                <td><input type="file" name="cat_image" /></td>
+                <td>
+                    <p class="my-2"><img width="80" src="{{asset('images')}}/{{$data->image}}" /></p>
+                    <input type="hidden" value="{{$data->image}}" name="cat_image" />
+                    <input type="file" name="cat_image" />
+                </td>
             </tr>
             <tr>
                 <td colspan="2">

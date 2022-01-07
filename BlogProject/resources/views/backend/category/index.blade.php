@@ -135,15 +135,17 @@
             </tr>
           </tfoot>
           <tbody>
+          @foreach($data as $cat)
               <tr>
-                <td></td>
-                <td></td>
-                <td><img src="" width="100" /></td>
+                <td>{{$cat->id}}</td>
+                <td>{{$cat->title}}</td>
+                <td><img src="{{ asset('images/') }}/{{$cat->image}}" width="100" /></td> <!--{{ asset('images').'/'.$cat->image }}-->
                 <td>
-                  <a class="btn btn-info btn-sm" href="">Update</a>
-                  <a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm" href="">Delete</a>
+                  <a class="btn btn-info btn-sm" href="{{url('admin/category/'.$cat->id.'/edit')}}">Update</a>
+                  <a onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-sm" href="{{url('admin/category/'.$cat->id.'/delete')}}">Delete</a>
                 </td>
               </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
