@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category; //use the category model
+use Session;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.category.index');
+        $data=Category::all(); //catch all datas
+        return view('backend.category.index',['data'=>$data]);
     }
 
     /**
@@ -33,9 +36,29 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+   public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required'
+        ]);
+
+        if($request->hasFile('cat_image')){
+            $image=$request->file('cat_image');
+            $reImage=time().'.'.$image->getClientOriginalExtension();
+            $dest=public_path('/images');
+            $image->move($dest,$reImage);
+        }else{
+            $reImage='na';
+        }
+
+        $category=new Category;
+        $category->title=$request->title;
+        $category->detail=$request->detail;
+        $category->image=$reImage;
+        $category->save();
+        Session::flash('success','Data has been added succesfully');
+
+        return redirect('admin/category/create');
     }
 
     /**
@@ -57,7 +80,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=Category::find($id);
+        return view('backend.category.update',['data'=>$data]);
     }
 
     /**
@@ -69,7 +93,28 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required'
+        ]);
+
+        if($request->hasFile('cat_image')){
+            $image=$request->file('cat_image');
+            $reImage=time().'.'.$image->getClientOriginalExtension();
+            $dest=public_path('/images');
+            $image->move($dest,$reImage);
+        }else{
+            $reImage=$request->cat_image;
+        }
+
+        $category=Category::find($id);
+        $category->title=$request->title;
+        $category->detail=$request->detail;
+        $category->image=$reImage;
+        $category->save();
+
+        Session::flash('success','Data has been updated succesfully');
+
+        return redirect('admin/category/'.$id.'/edit');
     }
 
     /**
@@ -80,6 +125,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::where('id',$id)->delete();
+        return redirect('admin/category');
     }
 }
