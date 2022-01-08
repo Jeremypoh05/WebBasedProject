@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin; 
 use Session;
+use Auth;
 
 class AdminController extends Controller
 {
+    public function __contruct(){
+        $this->middleware('auth');
+    } 
+
     // Login view
     public function login(){
         return view('backend.login'); //since the login file is inside the backend folder
@@ -34,5 +39,11 @@ class AdminController extends Controller
     // Dashboard
     public function dashboard(){
     	return view('backend.dashboard');
+    }
+
+    // Logout
+    function logout(){
+        session()->forget(['adminData']);
+        return redirect('admin/login');
     }
 }
