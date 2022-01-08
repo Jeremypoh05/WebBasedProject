@@ -1,5 +1,5 @@
 @extends('frontlayout')
-@section('title','Home')
+@section('title',$category->title)
 @section('content')
 		<div class="row">
 			<div class="col-md-8">

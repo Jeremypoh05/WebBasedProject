@@ -9,13 +9,17 @@
 				<div class="card">
 					<h5 class="card-header">
 						{{$detail->title}}
+                        <span class="float-right">Total Views = {{$detail->views}}</span>
 					</h5>
 					<img src="{{asset('images/full/'.$detail->full_img)}}" class="card-img-top" alt="{{$detail->title}}">
 					<div class="card-body">
 						{{$detail->detail}}
 					</div>
+                    <div class="card-footer">
+                       Categrory: <a href="{{url('category/'.Str::slug($detail->category->title).'/'.$detail->category->id)}}">{{$detail->category->title}}</a>
+                    </div>
 				</div>
-             
+                @auth
 				<!-- Add Comment -->
 				<div class="card my-5">
 					<h5 class="card-header">Add Comment</h5>
@@ -26,7 +30,7 @@
 						<input type="submit" class="btn btn-secondary mt-2" />
 					</div>
 				</div>
-
+                @endauth
                 	<!-- Fetch Comments -->
 				<div class="card my-4">
 					<h5 class="card-header">Comments <span class="badge badge-dark">{{count($detail->comments)}}</span></h5>
@@ -36,7 +40,7 @@
 								<blockquote class="blockquote">
 								  <p class="mb-0">{{$comment->comment}}</p>
 								  @if($comment->user_id==0)
-								  <footer class="blockquote-footer">User</footer>
+								  <footer class="blockquote-footer">Admin</footer>
 								  @else
 								  <footer class="blockquote-footer">{{$comment->user->name}}</footer>
 								  @endif
@@ -80,9 +84,11 @@
 				<div class="card mb-4">
 					<h5 class="card-header">Popular Posts</h5>
 					<div class="list-group list-group-flush">
-						
-								<a href="#" class="list-group-item">{{$post->title}} <span class="badge badge-info float-right">{{$post->views}}</span></a>
-					
+                    @if($popular_posts)
+						@foreach($popular_posts as $post)
+							<a href="#" class="list-group-item">{{$post->title}} <span class="badge badge-info float-right">{{$post->views}}</span></a>
+						@endforeach
+					@endif					
 					</div>
 				</div>
 			</div>
