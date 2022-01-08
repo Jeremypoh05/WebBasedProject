@@ -1,11 +1,5 @@
 @extends('layout')
-@section('meta_desc',$meta_desc)
-@section('title',$title)
 @section('content')
-
-    <!-- Content -->
-    <div class="container-fluid">
-
 <div class="container-fluid">
 
   <!-- Breadcrumbs-->
@@ -20,8 +14,8 @@
   <!-- DataTables Example -->
   <div class="card mb-3">
     <div class="card-header">
-      <i class="fas fa-table"></i> Categories
-      <a href="{{url('admin/category/create')}}" class="float-right btn btn-sm btn-dark">Add Categories</a>
+      <i class="fas fa-table"></i> Posts
+      <a href="{{url('admin/post/create')}}" class="float-right btn btn-sm btn-dark">Add Data</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -31,6 +25,7 @@
               <th>#</th>
               <th>Title</th>
               <th>Image</th>
+              <th>Full</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -39,29 +34,29 @@
               <th>#</th>
               <th>Title</th>
               <th>Image</th>
+              <th>Full</th>
               <th>Action</th>
             </tr>
           </tfoot>
           <tbody>
-          @foreach($data as $cat)
+              @foreach($data as $post)
               <tr>
-                <td>{{$cat->id}}</td>
-                <td>{{$cat->title}}</td>
-                <td><img src="{{ asset('images/') }}/{{$cat->image}}" width="100" /></td> <!--{{ asset('images').'/'.$cat->image }}-->
+                <td>{{$post->id}}</td>
+                <td>{{$post->title}}</td>
+                <td><img src="{{ asset('images/thumb').'/'.$post->thumb }}" width="100" /></td>
+                <td><img src="{{ asset('images/full').'/'.$post->full_img }}" width="100" /></td>
                 <td>
-                  <a class="btn btn-info btn-sm" href="{{url('admin/category/'.$cat->id.'/edit')}}">Update</a>
-                  <a onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-sm" href="{{url('admin/category/'.$cat->id.'/delete')}}">Delete</a>
+                  <a class="btn btn-info btn-sm" href="{{url('admin/post/'.$post->id.'/edit')}}">Update</a>
+                  <a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm" href="{{url('admin/post/'.$post->id.'/delete')}}">Delete</a>
                 </td>
               </tr>
-            @endforeach
+              @endforeach
           </tbody>
         </table>
       </div>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
   </div>
 
 </div>
 <!-- /.container-fluid -->
-
 @endsection
