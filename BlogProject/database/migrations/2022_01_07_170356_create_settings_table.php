@@ -17,8 +17,8 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('comment_auto')->default(0);
             $table->string('user_auto')->default(0);
-            $table->string('recent_limit')->default(6);
-            $table->string('popular_limit')->default(6);
+            $table->string('recent_limit')->default(5);
+            $table->string('popular_limit')->default(5);
             $table->string('recent_comment_limit')->default(5);
             $table->timestamps();
         });

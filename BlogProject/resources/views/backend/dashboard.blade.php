@@ -20,9 +20,9 @@
         <div class="card-body-icon">
           <i class="fas fa-fw fa-list"></i>
         </div>
-        <div class="mr-5">Categories</div>
+        <div class="mr-5">{{\App\Models\Category::count()}} Categories</div>
       </div>
-      <a class="card-footer text-white clearfix small z-1" href="">
+      <a class="card-footer text-white clearfix small z-1" href="{{url('admin/category')}}">
         <span class="float-left">View Details</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
@@ -36,9 +36,9 @@
         <div class="card-body-icon">
           <i class="fas fa-fw fa-address-card"></i>
         </div>
-        <div class="mr-5"></div>
+        <div class="mr-5">{{\App\Models\Post::count()}} Posts</div>
       </div>
-      <a class="card-footer text-white clearfix small z-1" href="">
+      <a class="card-footer text-white clearfix small z-1" href="{{url('admin/post')}}">
         <span class="float-left">View Details</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
@@ -52,9 +52,9 @@
         <div class="card-body-icon">
           <i class="fas fa-fw fa-comments"></i>
         </div>
-        <div class="mr-5"> Comments</div>
+        <div class="mr-5">{{\App\Models\Comment::count()}} Comments</div>
       </div>
-      <a class="card-footer text-white clearfix small z-1" href="">
+      <a class="card-footer text-white clearfix small z-1" href="{{url('admin/comment')}}">
         <span class="float-left">View Details</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
@@ -68,9 +68,9 @@
         <div class="card-body-icon">
           <i class="fas fa-fw fa-users"></i>
         </div>
-        <div class="mr-5">Users</div>
+        <div class="mr-5"> {{\App\Models\User::count()}} Users</div>
       </div>
-      <a class="card-footer text-white clearfix small z-1" href="">
+      <a class="card-footer text-white clearfix small z-1" href="{{url('admin/user')}}">
         <span class="float-left">View Details</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
@@ -80,8 +80,8 @@
   </div>
 </div>
 
-  <!-- DataTables Example -->
-  <div class="card mb-3">
+ <!-- DataTables Details -->
+ <div class="card mb-3">
     <div class="card-header">
       <i class="fas fa-table"></i>
       Recent Posts</div>
@@ -98,30 +98,21 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>#</th>
-              <th>Category</th>
-              <th>Title</th>
-              <th>Image</th>
-              <th>Full</th>
-              <th>Action</th>
-            </tr>
-          </tfoot>
+        
           <tbody>
-         
+              @foreach($posts as $post)
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><img src="" width="100" /></td>
-                <td><img src="" width="100" /></td>
+                <td>{{$post->id}}</td>
+                <td>{{$post->category->title}}</td>
+                <td>{{$post->title}}</td>
+                <td><img src="{{ asset('images/thumb').'/'.$post->thumb }}" width="100" /></td>
+                <td><img src="{{ asset('images/full').'/'.$post->full_img }}" width="100" /></td>
                 <td>
-                  <a class="btn btn-info btn-sm" href="">Update</a>
-                  <a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm" href="">Delete</a>
+                  <a class="btn btn-info btn-sm" href="{{url('admin/post/'.$post->id.'/edit')}}">Update</a>
+                  <a onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm" href="{{url('admin/post/'.$post->id.'/delete')}}">Delete</a>
                 </td>
               </tr>
-            
+              @endforeach
           </tbody>
         </table>
       </div>

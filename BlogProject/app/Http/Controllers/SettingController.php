@@ -13,7 +13,7 @@ class SettingController extends Controller
     }
 
      // Store
-     function save_settings(Request $request){
+     public function save_settings(Request $request){
     	$countData=Setting::count();
     	if($countData==0){
 	    	$data=new Setting;

@@ -32,22 +32,30 @@ Route::get('admin/category/{id}/delete',[App\Http\Controllers\CategoryController
 Route::resource('admin/post',App\Http\Controllers\PostController::class);
 Route::get('admin/post/{id}/delete',[App\Http\Controllers\PostController::class,'destroy']);
 
+// ---------------------------------------Comments------------------------------------
+Route::get('admin/comment',[App\Http\Controllers\AdminController::class,'comments']);
+Route::get('admin/comment/delete/{id}',[App\Http\Controllers\AdminController::class,'delete_comment']);
+
+// ----------------------------------------Users------------------------------------
+Route::get('admin/user',[App\Http\Controllers\AdminController::class,'users']);
+Route::get('admin/user/delete/{id}',[App\Http\Controllers\AdminController::class,'delete_user']);
+
 // ---------------------------------------Setting------------------------------------
 Route::get('/admin/setting',[App\Http\Controllers\SettingController::class,'index']);
 Route::post('/admin/setting',[App\Http\Controllers\SettingController::class,'save_settings']);
 
 // ------------------------------------Home Page (Frontend)--------------------------
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/home',[App\Http\Controllers\HomeController::class, 'searchPost']) ->name('search.post');
+Route::get('/',[App\Http\Controllers\HomeController::class,'index']);
 Route::get('/viewDetail/{slug}/{id}',[App\Http\Controllers\HomeController::class, 'detail']);
 Route::get('/all-categories',[App\Http\Controllers\HomeController::class,'all_category']);
 Route::get('/category/{slug}/{id}',[App\Http\Controllers\HomeController::class, 'category']);
 Route::post('/save-comment/{slug}/{id}',[App\Http\Controllers\HomeController::class,'save_comment']);
 Route::get('save-post-form',[App\Http\Controllers\HomeController::class,'save_post_form']);
 Route::post('save-post-form',[App\Http\Controllers\HomeController::class,'save_post_data']);
+Route::get('ManagePost',[App\Http\Controllers\HomeController::class,'manage_posts']);
 
 Auth::routes();
 
-Route::get('/',[App\Http\Controllers\HomeController::class,'index']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

@@ -10,22 +10,28 @@ use DB;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
     	// $posts=Post::orderBy('id','desc')->simplePaginate(1);
-    	
-    		$posts=Post::orderBy('id','desc')->paginate(6);
-            return view('home')->with('posts',$posts);
+        // Used for Searching !!! //
+    	if($request->has('keyword')){
+    		$keyword=$request->keyword;
+            $posts=Post::where('title','like','%'.$keyword.'%')->orderBy('id','desc')->paginate(2);
+        }else{
+    		$posts=Post::orderBy('id','desc')->cursorPaginate(10);
+        }
+            return view('home',['posts'=>$posts]);
+           // return view('home')->with('posts',$posts);
     }
 
-    public function searchPost(){
-        $data=request();
-        $keyword=$data->keyword; 
-        //select the Database table （products) where the name is same as the keyword
-        //keyword is the input type(name) that declared in the layout.blade so every interface
-        //can use this search function
-        $posts=DB::table('posts')->where('title','like','%'.$keyword.'%')->paginate(10);
-        return view('home')->with('posts',$posts); 
-    }
+    // public function searchPost(){
+    //    $data=request();
+    //    $keyword=$data->keyword; 
+    //    select the Database table （products) where the name is same as the keyword
+    //    keyword is the input type(name) that declared in the layout.blade so every interface
+    //    can use this search function
+    //    $posts=DB::table('posts')->where('title','like','%'.$keyword.'%')->paginate(10);
+    //   return view('home')->with('posts',$posts); 
+    //}
 
      // Post Detail
      public function detail(Request $request,$slug,$postId){
@@ -37,14 +43,14 @@ class HomeController extends Controller
 
      //Show All Categories
      public function all_category(){
-        $categories=Category::orderBy('id','desc')->paginate(6);
+        $categories=Category::orderBy('id','desc')->paginate(15);
         return view('AllCategories',['categories'=>$categories]);
     }
 
     // All posts according to the category
     public function category(Request $request,$cat_slug,$cat_id){
         $category=Category::find($cat_id);
-        $posts=Post::where('cat_id',$cat_id)->orderBy('id','desc')->paginate(6);
+        $posts=Post::where('cat_id',$cat_id)->orderBy('id','desc')->paginate(8);
         return view('category',['posts'=>$posts,'category'=>$category]);
     }
 
@@ -107,5 +113,11 @@ class HomeController extends Controller
         $post->save();
 
         return redirect('save-post-form')->with('success','Post has been added');
+    }
+
+    // Manage Posts
+    public function manage_posts(Request $request){
+        $posts=Post::where('user_id',$request->user()->id)->orderBy('id','desc')->get();
+        return view('ManagePost',['data'=>$posts]);
     }
 }

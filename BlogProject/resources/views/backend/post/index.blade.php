@@ -30,22 +30,13 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>#</th>
-              <th>Category</th>
-              <th>Title</th>
-              <th>Image</th>
-              <th>Full</th>
-              <th>Action</th>
-            </tr>
-          </tfoot>
+         
           <tbody>
               @foreach($data as $post)
               <tr>
                 <td>{{$post->id}}</td>
                 <td>{{$post->category->title}}</td>
-                <td>{{$post->title}}</td>
+                <td style="width:300px">{{$post->title}}</td>
                 <td><img src="{{ asset('images/thumb').'/'.$post->thumb }}" width="100" /></td>
                 <td><img src="{{ asset('images/full').'/'.$post->full_img }}" width="100" /></td>
                 <td>

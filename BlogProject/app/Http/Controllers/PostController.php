@@ -133,7 +133,7 @@ class PostController extends Controller
         if($request->hasFile('post_image')){
             $image2=$request->file('post_image');
             $reFullImage=time().'.'.$image2->getClientOriginalExtension();
-            $dest2=public_path('/iamges/full');
+            $dest2=public_path('/images/full');
             $image2->move($dest2,$reFullImage);
         }else{
             $reFullImage=$request->post_image;
