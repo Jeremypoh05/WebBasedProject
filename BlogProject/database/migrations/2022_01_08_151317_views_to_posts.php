@@ -15,7 +15,7 @@ class ViewsToPosts extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('views');
+            $table->integer('views')->default(1);
         });
     }
 
