@@ -242,8 +242,8 @@ nav .social a:hover #ld{
 .text-box {
     position: absolute;
     top:40%;
-    left: 45%;
-    transform: translate(-40%,-40%);
+    left: 30%;
+    transform: translate(-20%,-30%);
     text-align: center;
     color: white;
     line-height: 1.5;
@@ -409,11 +409,32 @@ nav .social a:hover #ld{
     color: rgb(97, 95, 95);
 }
 
+/* -------Pagination---------- */
+
 .container .site-content .post-content .post-title .post-btn{
     border-radius: 0;
     padding: .7rem 1.5rem;
     background: var(--sky);
 }
+
+.site-content .pagination{
+    justify-content: center;
+    color: var(--text-gray);
+    margin: 4rem 0;
+}
+
+.site-content .pagination a{
+    padding: .6rem .9rem;
+    border-radius: 2rem;
+    margin: 0 .3rem;
+    font-family: var(--Lexend);
+}
+
+.site-content .pagination .pages{
+    background: var(--text-gray);
+    color: var(--white);
+}
+
 
 
 /* -------x-------- Site Content --------x-------*/
@@ -426,10 +447,10 @@ nav .social a:hover #ld{
 }
 
 .search-bar{
-    margin-left: 25px;
+    margin-left: 20px;
 }
 .search-bar input[type=text]{
-    width: 100%; 
+    width: 95%; 
     padding: 12px 40px; 
     margin: 8px 0; 
     display: inline-block; 
@@ -493,7 +514,6 @@ nav .social a:hover #ld{
     border-radius: 3rem;
     margin: .4rem .6rem;
 }
-
 /* -------x---------  Sidebar -----------x----------- */
 
 /* ---------x------- Main Content -----x----- */
@@ -539,7 +559,7 @@ nav .social a:hover #ld{
 }
 
 .container .post-detail .site-content .post .cat-views span{
-    padding-left: 430px;
+    padding-left: 420px;
     font-size: 14px;
     color: lightslategray;
 }
@@ -610,6 +630,223 @@ nav .social a:hover #ld{
     color: gray;
     font-size: 14px;
     padding-left: 10px;
+}
+
+/* -----------------Contact Page -------------------- */
+/* Contact*/
+.contact{
+    position: relative;
+    min-height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: gray;
+    background-image: url("/images/contact_banner.jpg");
+    background-size: 1280px 640px;
+}
+
+.contact .contact-content{
+    max-width: 800px;
+    text-align: center;
+    line-height: 2.0;
+}
+
+.contact .contact-content h2{
+    font-size: 36px;
+    font-weight: 500;
+    color:coral;
+    text-transform: uppercase;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.contact .contact-content p{
+    font-weight: 300;
+    color: white;
+    font-size: 16px;
+    letter-spacing: 2px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.contact-container{
+    width: 100%;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.contact-container .contactInfo{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-container .contactInfo .box{
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+
+.contact-container .contactInfo .box .icon{
+    min-width: 60px;
+    height: 60px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.contact-container .contactInfo .box .text{
+    display: flex;
+    margin-top: -25px;
+    margin-left: 25px;
+    font-size: 16px;
+    color: white;
+    flex-direction: column;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.contact-container .contactInfo .box .text span{
+    font-weight: 500;
+    color:#00bcd4;
+    margin-top: -20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.contactForm{
+    width: 40%;
+    padding: 40px;
+    background-color: white;
+}
+
+.contactForm h2{
+    font-size: 40px;
+    color: #333;
+    font-weight: 500;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.contactForm .inputbox{
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.contactForm .inputbox input,
+.contactForm .inputbox textarea{
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: none;
+    resize: none;
+}
+
+.contactForm .inputbox span{
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #666;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.contactForm .inputbox input:focus ~ span, 
+.contactForm .inputbox input:valid ~ span,
+.contactForm .inputbox textarea:focus ~ span,
+.contactForm .inputbox textarea:valid ~ span{    
+    color: #e91e63;
+    font-size: 14px;
+    transform: translateY(-20px);
+}
+
+.contactForm .inputbox input[type="submit"] {
+    width: 100px;
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    cursor:pointer;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.popup .overlay{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 1;
+    display: none;
+}
+
+.popup .pop-content{
+    position:absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,-50%)scale(0);
+    background: white;
+    width: 300px;
+    height: 150px;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.popup .pop-content p{
+    padding: 25px;
+}
+
+.popup .close-btn {
+    position: absolute;
+    right: 6px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background: #222;
+    color:white;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.popup.active .overlay{
+    display: block;
+}
+
+.popup.active .pop-content{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%,-50%)scale(1);
+}
+
+@media (max-width: 991px) {
+    .contact{
+        padding: 40px;
+    }
+    .contact-container{
+        flex-direction: column;
+    }
+    .contact-container .contactInfo{
+        margin-bottom: 40px;
+    }
+    .contact-container .contactInfo,
+    .contactForm{
+        width: 100%;
+    }
 }
 
 /* ----------------- Login Register Page -------------------- */

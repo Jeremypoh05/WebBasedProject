@@ -40,6 +40,9 @@
                     <li class="nav-link">
                         <a href="{{url('all-categories')}}">Categories</a>
                     </li>
+                    <li class="nav-link">
+                        <a href="{{url('contact')}}">Contact</a>
+                    </li>
 					@guest
                     <li class="nav-link">
                         <a href="{{url('login')}}">Login</a>

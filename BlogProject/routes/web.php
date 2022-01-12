@@ -44,15 +44,16 @@ Route::get('admin/user/delete/{id}',[App\Http\Controllers\AdminController::class
 Route::get('/admin/setting',[App\Http\Controllers\SettingController::class,'index']);
 Route::post('/admin/setting',[App\Http\Controllers\SettingController::class,'save_settings']);
 
-// ------------------------------------Home Page (Frontend)--------------------------
+// ------------------------------------(Frontend)--------------------------
 Route::get('/',[App\Http\Controllers\HomeController::class,'index']);
 Route::get('/viewDetail/{slug}/{id}',[App\Http\Controllers\HomeController::class, 'detail']);
 Route::get('/all-categories',[App\Http\Controllers\HomeController::class,'all_category']);
 Route::get('/category/{slug}/{id}',[App\Http\Controllers\HomeController::class, 'category']);
 Route::post('/save-comment/{slug}/{id}',[App\Http\Controllers\HomeController::class,'save_comment']);
-Route::get('save-post-form',[App\Http\Controllers\HomeController::class,'save_post_form']);
-Route::post('save-post-form',[App\Http\Controllers\HomeController::class,'save_post_data']);
-Route::get('ManagePost',[App\Http\Controllers\HomeController::class,'manage_posts']);
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 
 Auth::routes();
 

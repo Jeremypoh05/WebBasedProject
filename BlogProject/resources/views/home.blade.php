@@ -4,7 +4,7 @@
 
 <section class="header">
     <div class="text-box">
-        <h1>Diversity of niches inside</h1>
+        <h1>SEE THE WORLD CLOSER</h1>
             <p>Blogging is a communications mechanism handed to us by the long tail of the Internet.
                 The future of communication starts here.  </p>
             <a href="#container" class="hero-btn">Explore</a>
@@ -41,6 +41,8 @@
 					@else
 					<p class="alert alert-danger">No Post Found</p>
 					@endif
+                       <!-- Pagination -->
+                        {{ $posts->links() }}
 				</div>
 
 				<aside class="sidebar">
@@ -103,10 +105,9 @@
                         @endforeach
 					    @endif	   
                     </div>
-
                     
-                      
-                    <div class="popular-tags">
+                     <!-- Popular Tags -->
+                     <div class="popular-tags">
                         <h2>Popular Tags</h2>
                         @foreach($posts as $post)
                         <div class="tags flex-row">

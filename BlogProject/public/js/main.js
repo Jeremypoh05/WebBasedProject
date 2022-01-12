@@ -42,7 +42,6 @@ $(document).ready(function () {
         responsive: responsive
     });
 
-
     // click to scroll top
     $('.move-up span').click(function () {
         $('html, body').animate({
@@ -55,6 +54,13 @@ $(document).ready(function () {
 
 });
 
+//Contact page- submit
+function togglePopup(){
+    document.getElementById("popup-1").classList.toggle("active");
+}
+
+
+// Sign In/UP page
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('acc-container');

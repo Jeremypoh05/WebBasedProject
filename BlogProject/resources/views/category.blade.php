@@ -33,6 +33,8 @@
 					@else
 					<p class="alert alert-danger">Comming Soon...</p>
 					@endif
+                       <!-- Pagination -->
+                       {{ $posts->links('my-paginate') }}
 				</div>
                 
 				<aside class="sidebar">

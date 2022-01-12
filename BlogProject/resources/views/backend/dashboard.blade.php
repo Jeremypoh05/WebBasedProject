@@ -104,7 +104,7 @@
               <tr>
                 <td>{{$post->id}}</td>
                 <td>{{$post->category->title}}</td>
-                <td>{{$post->title}}</td>
+                <td style="width:300px">{{$post->title}}</td>
                 <td><img src="{{ asset('images/thumb').'/'.$post->thumb }}" width="100" /></td>
                 <td><img src="{{ asset('images/full').'/'.$post->full_img }}" width="100" /></td>
                 <td>
