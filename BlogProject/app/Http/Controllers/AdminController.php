@@ -40,13 +40,13 @@ class AdminController extends Controller
     }
 
     // Dashboard
-    function dashboard(){
+    function showDashboard(){
         $posts=Post::orderBy('id','desc')->get();
     	return view('backend.dashboard',['posts'=>$posts]);
     }
 
      // Show all users
-     function users(){
+     function showUsers(){
         $data=User::orderBy('id','desc')->get();
         return view('backend.user.index',['data'=>$data]);
     }
@@ -59,7 +59,7 @@ class AdminController extends Controller
 
 
     // Show all comments
-    function comments(){
+    function showComments(){
         $data=Comment::orderBy('id','desc')->get();
         return view('backend.comment.index',['data'=>$data]);
     }

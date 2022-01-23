@@ -29,14 +29,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Action</th>
-            </tr>
-          </tfoot>
+  
           <tbody>
               @foreach($data as $user)
               <tr>

@@ -19,7 +19,7 @@ Route::get('/admin/login',[App\Http\Controllers\AdminController::class,'login'])
 //for admin to log in after create the login button
 Route::post('/admin/login',[App\Http\Controllers\AdminController::class,'submitLogin']);  
 //after login, show the admin dashboard
-Route::get('/admin/dashboard',[App\Http\Controllers\AdminController::class,'dashboard']);  
+Route::get('/admin/dashboard',[App\Http\Controllers\AdminController::class,'showDashboard']);  
 Route::get('/admin/logout',[App\Http\Controllers\AdminController::class,'logout']);
 
 // -------------------------------------Categories---------------------------------
@@ -33,11 +33,11 @@ Route::resource('admin/post',App\Http\Controllers\PostController::class);
 Route::get('admin/post/{id}/delete',[App\Http\Controllers\PostController::class,'destroy']);
 
 // ---------------------------------------Comments------------------------------------
-Route::get('admin/comment',[App\Http\Controllers\AdminController::class,'comments']);
+Route::get('admin/comment',[App\Http\Controllers\AdminController::class,'showComments']);
 Route::get('admin/comment/delete/{id}',[App\Http\Controllers\AdminController::class,'delete_comment']);
 
 // ----------------------------------------Users------------------------------------
-Route::get('admin/user',[App\Http\Controllers\AdminController::class,'users']);
+Route::get('admin/user',[App\Http\Controllers\AdminController::class,'showUsers']);
 Route::get('admin/user/delete/{id}',[App\Http\Controllers\AdminController::class,'delete_user']);
 
 // ---------------------------------------Setting------------------------------------

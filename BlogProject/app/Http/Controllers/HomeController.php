@@ -15,9 +15,9 @@ class HomeController extends Controller
         // Used for Searching !!! //
     	if($request->has('keyword')){
     		$keyword=$request->keyword;
-            $posts=Post::where('title','like','%'.$keyword.'%')->orderBy('id','desc')->get();
+            $posts=Post::where('title','like','%'.$keyword.'%')->orderBy('id','desc')->paginate(5);
         }else{
-    		$posts=Post::orderBy('id','desc')->paginate(4);
+    		$posts=Post::orderBy('id','desc')->paginate(5);
         }
             return view('home',['posts'=>$posts]);
            // return view('home')->with('posts',$posts);
